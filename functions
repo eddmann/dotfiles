@@ -1,15 +1,38 @@
 # Create a new directory and enter it
-function md() {
+function mkd() {
   mkdir -p "$@" && cd "$@"
 }
 
-# Use Git's coloured diff when available
+# Determine size of a file or total size of a directory
+function fs() {
+  if du -b /dev/null > /dev/null 2>&1; then
+    local arg=-sbh
+  else
+    local arg=-sh
+  fi
+  if [[ -n "$@" ]]; then
+    du $arg -- "$@"
+  else
+    du $arg .[^.]* *
+  fi
+}
+
+# Use Git's colored diff when available
 hash git &>/dev/null
 if [ $? -eq 0 ]; then
   function diff() {
     git diff --no-index --color-words "$@"
   }
 fi
+
+# Start a PHP server from a directory, optionally specifying the port
+# (Requires PHP 5.4.0+.)
+function phpserver() {
+  local port="${1:-4000}"
+  local ip=$(ipconfig getifaddr en1)
+  sleep 1 && open "http://${ip}:${port}/" &
+  php -S "${ip}:${port}"
+}
 
 # Extract multiple types of files
 function extract() {
@@ -39,3 +62,23 @@ function bk() {
   filetime=$(date +%Y%m%d_%H%M%S)
   cp ${filename} ${filename}_${filetime}
 }
+
+# Generate a random password
+#   $1 = number of characters; defaults to 32
+#   $2 = include special characters; 1 = yes, 0 = no; defaults to 1
+function randpass() {
+  if [ "$2" == "0" ]; then
+    cat /dev/urandom | tr -cd '[:alnum:]' | head -c ${1:-32}
+  else
+    cat /dev/urandom | tr -cd '[:graph:]' | head -c ${1:-32}
+  fi
+  echo
+}
+
+# Returns the HTTP Heades of web address
+function headers() {
+  curl -sv "$@" 2>&1 >/dev/null | grep -v "^\*" | grep -v "^}" | cut -c3-
+}
+
+# Add OS specific functions, if present
+[ -f ~/.functions_os ] && source ~/.functions_os

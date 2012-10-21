@@ -1,24 +1,26 @@
-# Load external .files
-for file in ~/.{bash_prompt,aliases,functions}; do
-  [ -r "$file" ] && source "$file"
+# Add '~/.bin' to the '$PATH'
+export PATH="$HOME/.bin:$PATH"
+
+# Load external dotfiles
+for f in ~/.{bash_prompt,aliases,functions}; do
+  [ -r "$f" ] && source "$f"
 done
-unset file
+unset f
 
 # Case-insensitive globbing
 shopt -s nocaseglob
 
-# Append to the Bash history file, rather than overwriting it
-shopt -s histappend
-
-# Autocorrect typos in path names when using 'cd'
+# Auto-correct typos in path names when using 'cd'
 shopt -s cdspell
 
 # Make vim the default editor
 export EDITOR="vim"
 
-# Setup Git
-git config --global user.name "Edward Mann"
-git config --global user.email "the@eddmann.com"
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
 
-# If possible, add tab completion for many more commands
+# Add tab completion, if available
 [ -f /etc/bash_completion ] && source /etc/bash_completion
+
+# Add OS specific bash_profile, if present
+[ -f ~/.bash_profile_os ] && source ~/.bash_profile_os
