@@ -1,84 +1,60 @@
-# Create a new directory and enter it
+# Create a new directory and enter it.
 function mkd() {
-  mkdir -p "$@" && cd "$@"
+    mkdir -p "$@" && cd "$@"
 }
 
-# Determine size of a file or total size of a directory
+# Determine size of a file or total size of a directory.
 function fs() {
-  if du -b /dev/null > /dev/null 2>&1; then
-    local arg=-sbh
-  else
-    local arg=-sh
-  fi
-  if [[ -n "$@" ]]; then
-    du $arg -- "$@"
-  else
-    du $arg .[^.]* *
-  fi
+    if du -b /dev/null > /dev/null 2>&1; then
+        ocal arg=-sbh
+    else
+        local arg=-sh
+    fi
+    if [[ -n "$@" ]]; then
+        du $arg -- "$@"
+    else
+        du $arg .[^.]* *
+    fi
 }
 
-# Use Git's colored diff when available
-hash git &>/dev/null
-if [ $? -eq 0 ]; then
-  function diff() {
-    git diff --no-index --color-words "$@"
-  }
-fi
-
-# Start a PHP server from a directory, optionally specifying the port
-# (Requires PHP 5.4.0+.)
-function phpserver() {
-  local port="${1:-4000}"
-  local ip=$(ipconfig getifaddr en1)
-  sleep 1 && open "http://${ip}:${port}/" &
-  php -S "${ip}:${port}"
+# Start a PHP server from a directory, optionally specifying the port.
+function serve() {
+    local port="${1:-4000}"
+    local ip=$(ipconfig getifaddr en1)
+    sleep 1 && open "http://${ip}:${port}/" &
+    php -S "${ip}:${port}"
 }
 
-# Extract multiple types of files
+# Extract multiple types of files.
 function extract() {
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xvjf $1    ;;
-      *.tar.gz)    tar xvzf $1    ;;
-      *.bz2)       bunzip2 $1     ;;
-      *.rar)       unrar x $1     ;;
-      *.gz)        gunzip $1      ;;
-      *.tar)       tar xvf $1     ;;
-      *.tbz2)      tar xvjf $1    ;;
-      *.tgz)       tar xvzf $1    ;;
-      *.zip)       unzip $1       ;;
-      *.Z)         uncompress $1  ;;
-      *.7z)        7z x $1        ;;
-      *)           echo "'$1' cannot be extracted via >extract<" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xvjf $1    ;;
+            *.tar.gz)    tar xvzf $1    ;;
+            *.bz2)       bunzip2 $1     ;;
+            *.rar)       unrar x $1     ;;
+            *.gz)        gunzip $1      ;;
+            *.tar)       tar xvf $1     ;;
+            *.tbz2)      tar xvjf $1    ;;
+            *.tgz)       tar xvzf $1    ;;
+            *.zip)       unzip $1       ;;
+            *.Z)         uncompress $1  ;;
+            *.7z)        7z x $1        ;;
+            *)           echo "'$1' cannot be extracted via >extract<" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
 }
 
-# Backup file, appending date_time to created file
+# Backup file, appending date_time to created file.
 function bk() {
-  filename=$1
-  filetime=$(date +%Y%m%d_%H%M%S)
-  cp ${filename} ${filename}_${filetime}
+    filename=$1
+    filetime=$(date +%Y%m%d_%H%M%S)
+    cp ${filename} ${filename}_${filetime}
 }
 
-# Generate a random password
-#   $1 = number of characters; defaults to 32
-#   $2 = include special characters; 1 = yes, 0 = no; defaults to 1
-function randpass() {
-  if [ "$2" == "0" ]; then
-    cat /dev/urandom | tr -cd '[:alnum:]' | head -c ${1:-32}
-  else
-    cat /dev/urandom | tr -cd '[:graph:]' | head -c ${1:-32}
-  fi
-  echo
-}
-
-# Returns the HTTP Heades of web address
+# Returns the HTTP Heades of web address.
 function headers() {
-  curl -sv "$@" 2>&1 >/dev/null | grep -v "^\*" | grep -v "^}" | cut -c3-
+    curl -sv "$@" 2>&1 >/dev/null | grep -v "^\*" | grep -v "^}" | cut -c3-
 }
-
-# Add OS specific functions, if present
-[ -f ~/.functions_os ] && source ~/.functions_os

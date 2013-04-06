@@ -1,2 +1,0 @@
-# Flush Directory Service cache
-alias flush="ipconfig /flushdns"

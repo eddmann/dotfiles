@@ -1,8 +1,8 @@
-# Green text, time, and date; windows in blue:
+# Green text, time, and date; windows in blue.
 hardstatus alwayslastline "%{=b}%{G} Screen(s): %{b}%w %=%{kG}%C%A  %D, %M/%d/%Y "
 
-# Turn off start message
+# Turn off start message.
 startup_message off
 
-# Set messages timeout to one second:
+# Set messages timeout to one second.
 msgwait 1

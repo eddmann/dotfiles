@@ -1,0 +1,11 @@
+# Generate a random password.
+# $1 = copy to clipboard
+# $2 = number of characters; defaults to 32
+function randpass() {
+    PASS=$(env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | head -c ${2:-32})
+    echo $PASS
+
+    if [ "$1" == "1" ]; then
+        echo $PASS | pbcopy
+    fi
+}
