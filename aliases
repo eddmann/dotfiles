@@ -22,10 +22,10 @@ else # OS X 'ls'
 fi
 
 # List all files colorized in long format.
-alias l="ls -l ${colorflag}"
+alias l="ls -lh ${colorflag}"
 
 # List all files colorized in long format, including dotfiles.
-alias ll="ls -la ${colorflag}"
+alias ll="ls -lha ${colorflag}"
 
 # List only directories.
 alias ld='ls -l ${colorflag} | grep "^d"'
@@ -51,9 +51,9 @@ alias whois="whois -h whois-servers.net"
 alias fs="stat -f \"%z bytes\""
 
 # A less annoying rm.
-alias rf="rm -rf "
+alias rf="rm -rf"
 
-# Disk free, in gigabytes, not bytes. 
+# Disk free, in gigabytes, not bytes.
 alias df="df -h"
 
 # Calculate total disk usage for a folder.
