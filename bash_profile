@@ -4,9 +4,9 @@
 # Load dotfiles.
 for f in {aliases,functions}; do
     # Load global.
-    [ -r "~/.$f" ] && source "~/.$f"
+    [ -r ~/.$f ] && source ~/.$f
     # Load OS.
-    [ -r "~/.os/$f" ] && source "~/.os/$f"
+    [ -r ~/.os/$f ] && source ~/.os/$f
 done
 unset f
 
