@@ -11,7 +11,7 @@ done
 unset f
 
 # Load OS specific bash_profile, if present.
-[ -r ~/.extra/bash_profile ] && source ~/.extra/bash_profile
+[ -r ~/.os/bash_profile ] && source ~/.os/bash_profile
 
 # Load extra, if present.
 [ -r ~/.extra ] && source ~/.extra

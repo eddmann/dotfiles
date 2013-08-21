@@ -51,7 +51,7 @@ alias whois="whois -h whois-servers.net"
 alias fs="stat -f \"%z bytes\""
 
 # A less annoying rm.
-alias rf="rm -rf"
+alias rf="rm -rfv"
 
 # Disk free, in gigabytes, not bytes.
 alias df="df -h"
