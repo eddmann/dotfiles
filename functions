@@ -20,7 +20,7 @@ function fs() {
 # Start a PHP server from a directory, optionally specifying the port.
 function serve() {
     local port="${1:-4000}"
-    local ip=$(ipconfig getifaddr en1)
+    local ip=0.0.0.0
     sleep 1 && open "http://${ip}:${port}/" &
     php -S "${ip}:${port}"
 }
