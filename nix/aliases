@@ -1,5 +1,5 @@
 alias reboot="sudo systemctl reboot"
 alias poweroff="sudo systemctl poweroff"
 alias wifi="sudo wifi-menu"
-alias chrome="google-chrome"
+alias chrome="/usr/bin/google-chrome"
 alias unmute="amixer sset Master unmute"

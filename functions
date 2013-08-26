@@ -3,48 +3,12 @@ function mkd() {
     mkdir -p "$@" && cd "$@"
 }
 
-# Determine size of a file or total size of a directory.
-function fs() {
-    if du -b /dev/null > /dev/null 2>&1; then
-        ocal arg=-sbh
-    else
-        local arg=-sh
-    fi
-    if [[ -n "$@" ]]; then
-        du $arg -- "$@"
-    else
-        du $arg .[^.]* *
-    fi
-}
-
 # Start a PHP server from a directory, optionally specifying the port.
 function serve() {
     local port="${1:-4000}"
     local ip=0.0.0.0
     sleep 1 && open "http://${ip}:${port}/" &
     php -S "${ip}:${port}"
-}
-
-# Extract multiple types of files.
-function extract() {
-    if [ -f $1 ] ; then
-        case $1 in
-            *.tar.bz2)   tar xvjf $1    ;;
-            *.tar.gz)    tar xvzf $1    ;;
-            *.bz2)       bunzip2 $1     ;;
-            *.rar)       unrar x $1     ;;
-            *.gz)        gunzip $1      ;;
-            *.tar)       tar xvf $1     ;;
-            *.tbz2)      tar xvjf $1    ;;
-            *.tgz)       tar xvzf $1    ;;
-            *.zip)       unzip $1       ;;
-            *.Z)         uncompress $1  ;;
-            *.7z)        7z x $1        ;;
-            *)           echo "'$1' cannot be extracted via >extract<" ;;
-        esac
-    else
-        echo "'$1' is not a valid file"
-    fi
 }
 
 # Backup file, appending date_time to created file.
