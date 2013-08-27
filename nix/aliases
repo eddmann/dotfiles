@@ -1,5 +1,10 @@
+# System control.
 alias reboot="sudo systemctl reboot"
 alias poweroff="sudo systemctl poweroff"
 alias wifi="sudo wifi-menu"
-alias chrome="/usr/bin/google-chrome"
+
+# Audio contol.
+alias mute="amixer sset Master mute"
 alias unmute="amixer sset Master unmute"
+alias volup="amixer sset Master 5%+"
+alias voldn="amixer sset Master 5%-"
