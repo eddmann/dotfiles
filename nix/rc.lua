@@ -112,15 +112,15 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibox
 
-batwidget = wibox.widget.textbox()
-vicious.register(batwidget, vicious.widgets.bat, "$1$2%", 30, "BAT0")
+battery_widget = wibox.widget.textbox()
+vicious.register(battery_widget, vicious.widgets.bat, "$1$2%", 15, "BAT0")
 
-volwidget = wibox.widget.textbox()
-vicious.register(volwidget, vicious.widgets.volume, "$1$2", 5, "Master")
+volume_widget = wibox.widget.textbox()
+vicious.register(volume_widget, vicious.widgets.volume, "$1$2", 5, "Master")
 
-myspacer = wibox.widget.textbox()
-myspacer:set_align("center")
-myspacer:set_text(" ")
+spacer_widget = wibox.widget.textbox()
+spacer_widget:set_align("center")
+spacer_widget:set_text(" ")
 
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
@@ -202,9 +202,9 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(volwidget)
-    right_layout:add(myspacer)
-    right_layout:add(batwidget)
+    right_layout:add(volume_widget)
+    right_layout:add(spacer_widget)
+    right_layout:add(battery_widget)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
 
@@ -305,7 +305,11 @@ clientkeys = awful.util.table.join(
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
-        end)
+        end),
+    -- Handle media keys.
+    awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer set Master 5%+", false) end),
+    awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer set Master 5%-", false) end),
+    awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer sset Master toggle", false) end)
 )
 
 -- Bind all key numbers to tags.
