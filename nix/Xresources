@@ -2,3 +2,5 @@ XTerm*faceName: DejaVu Sans Mono
 XTerm*faceSize: 11
 XTerm*background: black
 XTerm*foreground: white
+XTerm*borderWidth: 0
+XTerm*locale: true
