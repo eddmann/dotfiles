@@ -22,3 +22,8 @@ function bk() {
 function headers() {
     curl -sv "$@" 2>&1 >/dev/null | grep -v "^\*" | grep -v "^}" | cut -c3-
 }
+
+# Compiles and runs the Java source file.
+function javar() {
+    javac $1 && java `echo $1 | cut -d '.' -f 1`
+}
