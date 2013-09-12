@@ -15,3 +15,8 @@ function tree() {
     echo ${1:-.}
     find ${1:-.} -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
 }
+
+# Watch command implementation.
+function watch() {
+    while :; do clear; ${1:-tree}; sleep ${2:-5}; done
+}
