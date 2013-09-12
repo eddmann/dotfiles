@@ -9,3 +9,9 @@ function randpass() {
         echo $PASS | pbcopy
     fi
 }
+
+# Prints tree representation of the directory.
+function tree() {
+    echo ${1:-.}
+    find ${1:-.} -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
+}
