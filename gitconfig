@@ -11,7 +11,7 @@
     tags = tag -l
     branches = branch -a
     remotes = remote -v
-    # Export to ZIP.
+    # Export to ZIP - git zip 'location' 'branch'
     zip = archive --format zip --output
 
 [core]
