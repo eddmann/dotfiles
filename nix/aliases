@@ -8,3 +8,6 @@ alias mute="amixer sset Master mute"
 alias unmute="amixer sset Master unmute"
 alias volup="amixer sset Master 5%+"
 alias voldn="amixer sset Master 5%-"
+
+# Dual-monitor
+alias dual="xrandr --output VGA1 --right-of LVDS1"
