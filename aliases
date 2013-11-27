@@ -11,10 +11,17 @@ alias -- -="cd -"
 # Quick custom aliases.
 alias p="cd ~/Projects"
 alias g="git"
+alias gs="git s"
+alias gl="git l"
+alias gd="git d"
+alias gg="git go"
+alias gb="git branches"
+alias gr="git remotes"
 alias v="vim"
 alias s="subl"
+alias sd="subl ."
 alias c="clear"
-alias vud="vagrant destroy -f && vagrant up"
+alias vdu="vagrant destroy -f && vagrant up"
 
 # Detect which 'ls' flavor is in use.
 if ls --color > /dev/null 2>&1; then # GNU 'ls'
