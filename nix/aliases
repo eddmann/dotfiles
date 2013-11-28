@@ -10,4 +10,8 @@ alias volup="amixer sset Master 5%+"
 alias voldn="amixer sset Master 5%-"
 
 # Dual-monitor
-alias dual="xrandr --output VGA1 --right-of LVDS1"
+MONITOR_IN="LVDS1"
+MONITOR_EXT="VGA1"
+alias mond="xrandr --output $MONITOR_EXT --mode 1920x1080 --right-of $MONITOR_IN"
+alias moni="xrandr --output $MONITOR_EXT --off --output $MONITOR_IN --auto"
+alias mone="xrandr --output $MONITOR_IN --off --output $MONITOR_EXT --auto"
