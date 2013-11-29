@@ -13,6 +13,10 @@
     remotes = remote -v
     # Export to ZIP - git zip 'location' 'branch'
     zip = archive --format zip --output
+    # incoming changes
+    incoming = !git remote update -p; git log ..@{u}
+    # outgoing changes
+    outgoing = log @{u}..
 
 [core]
     # Use custom '.gitignore'.
