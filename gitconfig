@@ -17,6 +17,7 @@
     incoming = !git remote update -p; git log ..@{u}
     # outgoing changes
     outgoing = log @{u}..
+    today = !git log --since=midnight --author=\"$(git config user.name)\" --oneline
 
 [core]
     # Use custom '.gitignore'.
