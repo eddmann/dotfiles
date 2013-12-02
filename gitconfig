@@ -1,47 +1,61 @@
-[alias]
-    # A better log. https://coderwall.com/p/euwpig
-    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    # View the current working tree status using the short format.
-    s = status -s
-    # Show the diff between the latest commit and the current state.
-    d = !"git diff-index --quiet HEAD -- || clear; git diff --patch-with-stat"
-    # Switch to a branch, creating it if necessary.
-    go = checkout -B
-    # Show verbose output about tags, branches or remotes.
-    tags = tag -l
-    branches = branch -a
-    remotes = remote -v
-    # Export to ZIP - git zip 'location' 'branch'
-    zip = archive --format zip --output
-    # incoming changes
-    incoming = !git remote update -p; git log ..@{u}
-    # outgoing changes
-    outgoing = log @{u}..
-    today = !git log --since=midnight --author=\"$(git config user.name)\" --oneline
-
 [core]
-    # Use custom '.gitignore'.
     excludesfile = ~/.gitignore
+    editor = /usr/bin/vim
+    pager = less -x4 # 4 tab-stops
+
+[user]
+    name = Edward Mann
+    email = the@eddmann.com
 
 [color]
-    # Use colors in Git commands that are capable of colored output when outputting to the terminal.
     ui = auto
+
 [color "branch"]
     current = yellow reverse
     local = yellow
     remote = green
+
 [color "diff"]
     meta = yellow bold
     frag = magenta bold
     old = red bold
     new = green bold
+
 [color "status"]
     added = yellow
     changed = green
     untracked = cyan
+
+[push]
+    default = upstream
+
+[pull]
+    default = current
+
+[branch]
+    autosetuprebase = always
+
 [merge]
-    # Include summaries of merged commits in newly created merge commit messages.
     log = true
-[user]
-	name = Edward Mann
-	email = the@eddmann.com
+
+# https://github.com/durdn/cfg/blob/master/.gitconfig
+# https://coderwall.com/p/euwpig
+
+[alias]
+    s = status -s
+    st = status
+    d = !"git diff-index --quiet HEAD -- || clear; git diff --patch-with-stat"
+    cl = clone
+    ci = commit
+    cm = commit -m
+    ca = commit --amend
+    go = checkout -B
+    tg = tag -l
+    br = branch -a
+    re = remote -v
+    l = log --pretty=format:'%Cred%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset' --graph
+    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat --date=short
+    lt = !git l --since=midnight --author=\"$(git config user.name)\" # today
+    zip = archive --format zip --output # location branch
+    incoming = !git remote update -p; git l ..@{u}
+    outgoing = !git l @{u}..
