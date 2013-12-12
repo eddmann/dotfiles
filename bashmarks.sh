@@ -42,8 +42,8 @@ RED="0;31m"
 GREEN="0;33m"
 
 # save current directory to bookmarks
-function goto_s {
-    goto_check_help $1
+function goto-s {
+    goto-check-help $1
     _bookmark_name_valid "$@"
     if [ -z "$exit_message" ]; then
         _purge_line "$SDIRS" "export DIR_$1="
@@ -54,7 +54,7 @@ function goto_s {
 
 # jump to bookmark
 function goto {
-    goto_check_help $1
+    goto-check-help $1
     source $SDIRS
     target="$(eval $(echo echo $(echo \$DIR_$1)))"
     if [ -d "$target" ]; then
@@ -67,15 +67,15 @@ function goto {
 }
 
 # print bookmark
-function goto_p {
-    goto_check_help $1
+function goto-p {
+    goto-check-help $1
     source $SDIRS
     echo "$(eval $(echo echo $(echo \$DIR_$1)))"
 }
 
 # delete bookmark
-function goto_d {
-    goto_check_help $1
+function goto-d {
+    goto-check-help $1
     _bookmark_name_valid "$@"
     if [ -z "$exit_message" ]; then
         _purge_line "$SDIRS" "export DIR_$1="
@@ -84,7 +84,7 @@ function goto_d {
 }
 
 # print out help for the forgetful
-function goto_check_help {
+function goto-check-help {
     if [ "$1" = "-h" ] || [ "$1" = "-help" ] || [ "$1" = "--help" ] ; then
         echo ''
         echo 's <bookmark_name> - Saves the current directory as "bookmark_name"'
@@ -97,8 +97,8 @@ function goto_check_help {
 }
 
 # list bookmarks with dirnam
-function goto_l {
-    goto_check_help $1
+function goto-l {
+    goto-check-help $1
     source $SDIRS
 
     # if color output is not working for you, comment out the line below '\033[1;32m' == "red"
@@ -164,6 +164,6 @@ if [ $ZSH_VERSION ]; then
 else
     shopt -s progcomp
     complete -F _comp goto
-    complete -F _comp goto_p
-    complete -F _comp goto_d
+    complete -F _comp goto-p
+    complete -F _comp goto-d
 fi

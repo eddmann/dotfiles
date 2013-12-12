@@ -31,6 +31,11 @@ function javar() {
 }
 
 # Recursively locate and destroy all vagrant instances.
-function vagrantda() {
+function vagrant-destroy-all() {
     find $(pwd) -type d -name .vagrant -exec sh -c '(cd $(dirname {}) && pwd && vagrant destroy -f)' \;
+}
+
+# Recursively locate and suspend all vagrant instances.
+function vagrant-suspend-all() {
+    find $(pwd) -type d -name .vagrant -exec sh -c '(cd $(dirname {}) && pwd && vagrant suspend)' \;
 }
