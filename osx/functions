@@ -20,3 +20,12 @@ function tree() {
 function watch() {
     while :; do clear; ${1:-tree}; sleep ${2:-5}; done
 }
+
+function docker-remove-containers() {
+    docker stop $(docker ps -a -q)
+    docker rm $(docker ps -a -q)
+}
+
+function docker-remove-images() {
+    docker rmi $(docker images -q)
+}
