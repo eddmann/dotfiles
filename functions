@@ -48,8 +48,23 @@ function vagrant-suspend-all() {
         -exec sh -c '(cd $(dirname {}) && pwd && vagrant suspend)' \;
 }
 
+# Rip all YouTube channel videos
 function yt-chanrip() {
     for i in $(curl -s http://gdata.youtube.com/feeds/api/users/"$1"/uploads | \
         grep -Eo "watch\?v=[^[:space:]\"\'\\]{11}" | uniq); \
             do youtube-dl --title --no-overwrites http://youtube.com/"$i"; done
+}
+
+# Remove local branches that are merged in current branch
+function git-remove-merged-branches() {
+    local current_branch=$(git rev-parse --abbrev-ref HEAD)
+    for branch in $(git branch --merged | grep -v "\*" | cut -c3-)
+    do
+        echo "Branch $branch is already merged into $current_branch."
+        echo "Would you like to delete it? [Y]es/[N]o "
+        read REPLY
+        if [[ $REPLY =~ ^[Yy] ]]; then
+            git branch -d $branch
+        fi
+    done
 }
