@@ -4,7 +4,7 @@
     pager = less -x4 # 4 tab-stops
 
 [user]
-    name = Edward Mann
+    name = Edd Mann
     email = the@eddmann.com
 
 [color]
@@ -37,6 +37,10 @@
 
 [merge]
     log = true
+
+[help]
+    # http://nathanhoad.net/git-autocorrect-for-simple-typos
+    autocorrect = 1
 
 # https://github.com/durdn/cfg/blob/master/.gitconfig
 # https://coderwall.com/p/euwpig
