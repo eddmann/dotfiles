@@ -68,3 +68,7 @@ function git-remove-merged-branches() {
         fi
     done
 }
+
+function resource() {
+    source ~/.bashrc
+}

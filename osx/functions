@@ -29,3 +29,9 @@ function docker-remove-containers() {
 function docker-remove-images() {
     docker rmi $(docker images -q)
 }
+
+function switch-php() {
+    brew unlink php53 php54 php55 php56
+    brew link php$1
+    source ~/.bashrc
+}

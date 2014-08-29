@@ -25,3 +25,5 @@ alias mergepdf="/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Re
 
 alias mediac="sshfs 10.10.10.6:/media ~/media -oauto_cache,reconnect,defer_permissions,negative_vncache,noappledouble,volname=Media"
 alias mediad="umount ~/media"
+
+alias swift-i="xcrun swift -i"
