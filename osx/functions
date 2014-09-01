@@ -35,3 +35,9 @@ function switch-php() {
     brew link php$1
     source ~/.bashrc
 }
+
+function swift-run {
+    TMP=`date +"%T"`
+    xcrun swift $1 -o $TMP && ./$TMP
+    rm $TMP
+}
