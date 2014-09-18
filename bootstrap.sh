@@ -7,7 +7,7 @@ dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 root="$HOME"
 
 # Define all files/folders to be symlinked into home directory.
-files="aliases bash_profile bash_prompt bashrc functions gitconfig gitignore inputrc my.cnf screenrc vimrc bashmarks.sh"
+files="aliases bash_profile bashrc functions gitconfig gitignore inputrc my.cnf screenrc vimrc bashmarks.sh liquidpromptrc"
 for f in $files; do
     echo "Creating symlink to $f at ${root}/.$f"
     rm -f ${root}/.$f

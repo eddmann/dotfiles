@@ -1,5 +1,5 @@
 # Load bash prompt.
-[ -r ~/.bash_prompt ] && source ~/.bash_prompt
+[ -r ~/Projects/dotfiles/liquidprompt/liquidprompt ] && source ~/Projects/dotfiles/liquidprompt/liquidprompt
 
 # Load dotfiles.
 for f in {aliases,functions}; do
