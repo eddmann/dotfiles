@@ -13,8 +13,5 @@ unset f
 # Load OS specific bash_profile, if present.
 [ -r ~/.os/bash_profile ] && source ~/.os/bash_profile
 
-# Load Bashmarks.
-source ~/.bashmarks.sh
-
 # Load extra, if present.
 [ -r ~/.extra ] && source ~/.extra

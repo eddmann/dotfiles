@@ -69,6 +69,7 @@ function git-remove-merged-branches() {
     done
 }
 
+# Reload dotfiles
 function resource() {
     source ~/.bashrc
 }

@@ -23,7 +23,6 @@ alias showdesk="defaults write com.apple.finder CreateDesktop -bool true && kill
 # Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
 alias mergepdf="/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py"
 
+# Connect to local media server
 alias mediac="sshfs 10.10.10.6:/media ~/media -oauto_cache,reconnect,defer_permissions,negative_vncache,noappledouble,volname=Media"
 alias mediad="umount ~/media"
-
-alias swift-i="xcrun swift -i"
