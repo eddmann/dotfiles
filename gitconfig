@@ -63,3 +63,6 @@
     zip = archive --format zip --output # location branch
     incoming = !git remote update -p; git l ..@{u}
     outgoing = !git l @{u}..
+
+[credential]
+    helper = osxkeychain
