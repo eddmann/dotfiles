@@ -24,5 +24,5 @@ alias showdesk="defaults write com.apple.finder CreateDesktop -bool true && kill
 alias mergepdf="/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py"
 
 # Connect to local media server
-alias mediac="sshfs 10.10.10.6:/media ~/media -oauto_cache,reconnect,defer_permissions,negative_vncache,noappledouble,volname=Media"
+alias mediac="sshfs 10.10.10.3:/media -p 2222 ~/media -oauto_cache,reconnect,defer_permissions,negative_vncache,noappledouble,volname=Media"
 alias mediad="umount ~/media"
